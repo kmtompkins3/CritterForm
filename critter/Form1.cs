@@ -85,12 +85,12 @@ namespace critter
                 Waste = Waste + 10;
                 WasteBar.Value = Waste;
             }
-            //here
+            
             if (Hunger >= 100)
             {
                 WarningBox.Text = "You are going to over feed your critter";
             }
-            if (Hunger >= 150)
+            if (Hunger >= 145)
             {
                 WarningBox.Text = "You have over fed your critter there will be consequences";
                 HungerIncrease = 0;
@@ -270,7 +270,7 @@ namespace critter
                 while (true)
                 {
                     Random rnd = new Random();
-                    int RandomWaste= rnd.Next(1, 6);
+                    int RandomWaste = rnd.Next(1, 6);
 
                     if (Waste <= 95)
                     {
@@ -337,7 +337,7 @@ namespace critter
                     Random rnd = new Random();
                     int RandomHappieness = rnd.Next(1, 6);
 
-                    if (Happieness < 100 && Happieness >=5 )
+                    if (Happieness < 100 && Happieness >= 5)
                     {
                         switch (RandomHappieness)
                         {
@@ -425,7 +425,7 @@ namespace critter
                                 break;
                         }
                     }
-                    if(Hunger < 25)
+                    if (Hunger < 25)
                     {
                         WarningBox.Text = "Your critter is starving";
                     }
