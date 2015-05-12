@@ -15,9 +15,9 @@ namespace critter
     {
         int Health = 100;
 
-        int Hunger = 95;
+        int Hunger = 100;
         int HungerIncrease = 5;
-        int Happieness = 95;
+        int Happieness = 100;
         int HappienessIncrease = 5;
         int Waste = 0;
 
@@ -45,7 +45,6 @@ namespace critter
             WasteBar.Value = Waste;
 
             #region threadstart
-            Thread.Sleep(5000);
             HealthIncrease = new Thread(new ThreadStart(HealthIncreaseThread));//creates function for thread
             HealthIncrease.Start();//starts thread
             HungerDecrease = new Thread(new ThreadStart(HungerDecreaseThread));//creates function for thread
@@ -195,7 +194,6 @@ namespace critter
         //health increasing over time
         private void HealthIncreaseThread()
         {
-            Thread.Sleep(5000);
             try
             {
                 while (true)
@@ -250,7 +248,6 @@ namespace critter
         //waste increaing over time
         private void WasteIncreaseThread()
         {
-            Thread.Sleep(5000);
             try
             {
                 while (true)
@@ -305,7 +302,6 @@ namespace critter
         //happieness decreasing over time
         private void HappienessDecreaseThread()
         {
-            Thread.Sleep(5000);
             try
             {
                 while (true)
@@ -360,7 +356,6 @@ namespace critter
         //hunger decreaing over time
         private void HungerDecreaseThread()
         {
-            Thread.Sleep(5000);
             try
             {
                 while (true)
