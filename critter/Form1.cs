@@ -371,7 +371,7 @@ namespace critter
                     {
                         WarningBox.Text = "Your critter is lonley";
                     }
-                    Thread.Sleep(3000);
+                    Thread.Sleep(5000);
                 }
 
             }
