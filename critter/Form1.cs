@@ -43,6 +43,8 @@ namespace critter
             WasteBar.Minimum = 0;
             WasteBar.Maximum = 100;
             WasteBar.Value = Waste;
+            WasteBar.BackColor = Color.Blue;
+            WasteBar.ForeColor = Color.Red;
 
             #region threadstart
             HealthIncrease = new Thread(new ThreadStart(HealthIncreaseThread));//creates function for thread
@@ -101,6 +103,11 @@ namespace critter
                 {
                     WarningBox.Text = "Your critter is dead";
                 }
+                if (Health < 5)
+                {
+                    Health = 0;
+                    HealthBar.Value = Health;
+                }
             }
         }
         #endregion
@@ -142,6 +149,11 @@ namespace critter
                 Health = Health - 10;
                 HealthBar.Value = Health;
             }
+            if (Health < 5)
+            {
+                Health = 0;
+                HealthBar.Value = Health;
+            }
         }
         #endregion
 
@@ -158,6 +170,11 @@ namespace critter
                     Happieness = Happieness + 5;
                     HappienessBar.Value = Happieness;
                 }
+            }
+            if (Health < 5)
+            {
+                Health = 0;
+                HealthBar.Value = Health;
             }
         }
 
@@ -201,7 +218,7 @@ namespace critter
                     Random rnd = new Random();
                     int RandomHealth = rnd.Next(1, 6);
 
-                    if (Health <= 95 && Health != 0)
+                    if (Health <= 95 && Health != 0 && Hunger > 50 && Happieness > 50 && Waste < 50)
                     {
                         switch (RandomHealth)
                         {
@@ -285,6 +302,17 @@ namespace critter
                                 break;
                         }
                     }
+                    if (Waste > 50)
+                    {
+                        WarningBox.Text = "Waste is unsanitary there will be consequences";
+                        Health = Health - 10;
+                        HealthBar.Value = Health;
+                    }
+                    if (Health < 5)
+                    {
+                        Health = 0;
+                        HealthBar.Value = Health;
+                    }
                     Thread.Sleep(8000);
                 }
 
@@ -339,6 +367,10 @@ namespace critter
                                 break;
                         }
                     }
+                    if (Happieness < 25)
+                    {
+                        WarningBox.Text = "Your critter is lonley";
+                    }
                     Thread.Sleep(3000);
                 }
 
@@ -363,7 +395,7 @@ namespace critter
                     Random rnd = new Random();
                     int RandomHunger = rnd.Next(1, 6);
 
-                    if (Hunger < 100 && Hunger >= 5)
+                    if (Hunger < 150 && Hunger >= 5)
                     {
                         switch (RandomHunger)
                         {
@@ -392,6 +424,10 @@ namespace critter
                                 HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                         }
+                    }
+                    if(Hunger < 25)
+                    {
+                        WarningBox.Text = "Your critter is starving";
                     }
                     Thread.Sleep(3000);
                 }
