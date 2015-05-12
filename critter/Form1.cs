@@ -148,7 +148,7 @@ namespace critter
 
         private void Clean_Click(object sender, EventArgs e)
         {
-            if (Waste != 0)
+            if (Waste >= 5)
             {
                 Waste = Waste - 5;
                 WasteBar.Value = Waste;
@@ -219,11 +219,11 @@ namespace critter
                                 HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
                                 break;
                             case 5:
-                                Health = Health + 3;
+                                Health = Health + 4;
                                 HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
                                 break;
                             case 6:
-                                Health = Health + 4;
+                                Health = Health + 5;
                                 HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
                                 break;
                         }
@@ -247,7 +247,7 @@ namespace critter
                     Random rnd = new Random();
                     int RandomWaste= rnd.Next(1, 6);
 
-                    if (Waste <= 95 && Waste != 0)
+                    if (Waste <= 95)
                     {
                         switch (RandomWaste)
                         {
@@ -260,41 +260,129 @@ namespace critter
                                 WasteBar.Invoke((MethodInvoker)(() => WasteBar.Value = Waste));
                                 break;
                             case 3:
-                                Waste = Health + 2;
-                                HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
+                                Waste = Waste + 2;
+                                WasteBar.Invoke((MethodInvoker)(() => WasteBar.Value = Waste));
                                 break;
                             case 4:
-                                Health = Health + 3;
-                                HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
+                                Waste = Waste + 3;
+                                WasteBar.Invoke((MethodInvoker)(() => WasteBar.Value = Waste));
                                 break;
                             case 5:
-                                Health = Health + 3;
-                                HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
+                                Waste = Waste + 4;
+                                WasteBar.Invoke((MethodInvoker)(() => WasteBar.Value = Waste));
                                 break;
                             case 6:
-                                Health = Health + 4;
-                                HealthBar.Invoke((MethodInvoker)(() => HealthBar.Value = Health));
+                                Waste = Waste + 5;
+                                WasteBar.Invoke((MethodInvoker)(() => WasteBar.Value = Waste));
                                 break;
                         }
                     }
-                    Thread.Sleep(5000);
+                    Thread.Sleep(8000);
                 }
 
             }
             catch (ThreadAbortException tbe)
             {
-                HealthIncrease.Abort();//ends thread
+                WasteIncrease.Abort();//ends thread
             }
         }
 
         private void HappienessDecreaseThread()
         {
+            try
+            {
+                while (true)
+                {
+                    Random rnd = new Random();
+                    int RandomHappieness = rnd.Next(1, 6);
 
+                    if (Happieness < 100 && Happieness >=5 )
+                    {
+                        switch (RandomHappieness)
+                        {
+                            case 1:
+                                Happieness = Happieness - 0;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 2:
+                                Happieness = Happieness - 1;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 3:
+                                Happieness = Happieness - 2;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 4:
+                                Happieness = Happieness - 3;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 5:
+                                Happieness = Happieness - 4;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 6:
+                                Happieness = Happieness - 5;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                        }
+                    }
+                    Thread.Sleep(3000);
+                }
+
+            }
+            catch (ThreadAbortException tbe)
+            {
+                HappienessDecrease.Abort();//ends thread
+            }
         }
 
         private void HungerDecreaseThread()
         {
+            try
+            {
+                while (true)
+                {
+                    Random rnd = new Random();
+                    int RandomHappieness = rnd.Next(1, 6);
 
+                    if (Happieness < 100 && Happieness >= 5)
+                    {
+                        switch (RandomHappieness)
+                        {
+                            case 1:
+                                Happieness = Happieness - 0;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 2:
+                                Happieness = Happieness - 1;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 3:
+                                Happieness = Happieness - 2;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 4:
+                                Happieness = Happieness - 3;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 5:
+                                Happieness = Happieness - 4;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                            case 6:
+                                Happieness = Happieness - 5;
+                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                break;
+                        }
+                    }
+                    Thread.Sleep(3000);
+                }
+
+            }
+            catch (ThreadAbortException tbe)
+            {
+                HappienessDecrease.Abort();//ends thread
+            }
         }
 
     }
