@@ -44,6 +44,8 @@ namespace critter
             WasteBar.Maximum = 100;
             WasteBar.Value = Waste;
 
+            #region threadstart
+            Thread.Sleep(5000);
             HealthIncrease = new Thread(new ThreadStart(HealthIncreaseThread));//creates function for thread
             HealthIncrease.Start();//starts thread
             HungerDecrease = new Thread(new ThreadStart(HungerDecreaseThread));//creates function for thread
@@ -52,7 +54,7 @@ namespace critter
             HappienessDecrease.Start();//starts thread
             WasteIncrease = new Thread(new ThreadStart(WasteIncreaseThread));//creates function for thread
             WasteIncrease.Start();//starts thread
-
+            #endregion
         }
 
         #region FeedButton
@@ -189,8 +191,11 @@ namespace critter
 
         #endregion
 
+        #region threads
+        //health increasing over time
         private void HealthIncreaseThread()
         {
+            Thread.Sleep(5000);
             try
             {
                 while (true)
@@ -236,10 +241,16 @@ namespace critter
             {
                 HealthIncrease.Abort();//ends thread
             }
+            catch (InvalidOperationException tbe)
+            {
+                HealthIncrease.Abort();
+            }
         }
 
+        //waste increaing over time
         private void WasteIncreaseThread()
         {
+            Thread.Sleep(5000);
             try
             {
                 while (true)
@@ -285,10 +296,16 @@ namespace critter
             {
                 WasteIncrease.Abort();//ends thread
             }
+            catch (InvalidOperationException tbe)
+            {
+                WasteIncrease.Abort();
+            }
         }
 
+        //happieness decreasing over time
         private void HappienessDecreaseThread()
         {
+            Thread.Sleep(5000);
             try
             {
                 while (true)
@@ -334,44 +351,50 @@ namespace critter
             {
                 HappienessDecrease.Abort();//ends thread
             }
+            catch (InvalidOperationException tbe)
+            {
+                HappienessDecrease.Abort();
+            }
         }
 
+        //hunger decreaing over time
         private void HungerDecreaseThread()
         {
+            Thread.Sleep(5000);
             try
             {
                 while (true)
                 {
                     Random rnd = new Random();
-                    int RandomHappieness = rnd.Next(1, 6);
+                    int RandomHunger = rnd.Next(1, 6);
 
-                    if (Happieness < 100 && Happieness >= 5)
+                    if (Hunger < 100 && Hunger >= 5)
                     {
-                        switch (RandomHappieness)
+                        switch (RandomHunger)
                         {
                             case 1:
-                                Happieness = Happieness - 0;
-                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                Hunger = Hunger - 0;
+                                HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                             case 2:
-                                Happieness = Happieness - 1;
-                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                Hunger = Hunger - 1;
+                                HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                             case 3:
-                                Happieness = Happieness - 2;
-                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                Hunger = Hunger - 2;
+                                HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                             case 4:
-                                Happieness = Happieness - 3;
-                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                Hunger = Hunger - 3;
+                                HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                             case 5:
-                                Happieness = Happieness - 4;
-                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                Hunger = Hunger - 4;
+                                HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                             case 6:
-                                Happieness = Happieness - 5;
-                                HappienessBar.Invoke((MethodInvoker)(() => HappienessBar.Value = Happieness));
+                                Hunger = Hunger - 5;
+                                HungerBar.Invoke((MethodInvoker)(() => HungerBar.Value = Hunger));
                                 break;
                         }
                     }
@@ -381,9 +404,13 @@ namespace critter
             }
             catch (ThreadAbortException tbe)
             {
-                HappienessDecrease.Abort();//ends thread
+                HungerDecrease.Abort();//ends thread
+            }
+            catch (InvalidOperationException tbe)
+            {
+                HungerDecrease.Abort();
             }
         }
-
+        #endregion
     }
 }
